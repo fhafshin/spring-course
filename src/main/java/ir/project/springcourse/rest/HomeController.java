@@ -4,6 +4,7 @@ import ir.project.two.Coach;
 import ir.project.two.Coach2;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,5 +44,19 @@ public class HomeController {
 
 
         return coach2.getName();
+    }
+
+    @GetMapping("/exp")
+    public String getExp(){
+
+
+
+
+        throw new NotFoundException("error");
+    }
+
+    @ExceptionHandler({NotFoundException.class})
+    public String exceptionHandler(){
+        return "not found exception";
     }
 }
